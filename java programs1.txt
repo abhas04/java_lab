@@ -1,0 +1,291 @@
+1)Electricity Bill
+
+import java.util.Scanner;
+public class program1
+{
+public static void main(String[] args)
+{
+Scanner in = new Scanner(System.in);
+String name, num;
+int pre,cur,ele,t;
+double total=0;
+System.out.println("Enter the customer number");
+num = in.nextLine();
+System.out.println("Enter the Customer name ");
+name=in.nextLine();
+System.out.println("Enter the previous month reading");
+pre=in.nextInt();
+System.out.println("Enter the current month reading");
+cur=in.nextInt();
+ele=cur-pre;
+System.out.println("Enter the 1 if type of EB connection is Domestic\n Enter 2 if the type of EB connection of commercial");
+t=in.nextInt();
+if(t==1)
+{
+if (ele<=100)
+total=ele;
+else if(ele<=200)
+total=ele*2.5;
+else if(ele<=500)
+total=ele*4;
+else if(ele>500)
+total=ele*6;
+else
+System.out.println("input error program terminated");
+}
+else if(t==2)
+{
+if (ele<=100)
+total=ele*2;
+else if(ele<=200)
+total=ele*4.5;
+else if(ele<=500)
+total=ele*6;
+else if(ele>500)
+total=ele*7;
+else
+System.out.println("input error program terminated");
+}
+else
+System.out.println("input error program terminated");
+if((t==1)||(t==2))
+{
+System.out.println("CustomberName : "+name);
+System.out.println("Custombernumber : "+num);
+if(t==1)
+System.out.println("ER Connection type : Domestic");
+else
+System.out.println("ER Connection type : Commercial");
+System.out.println("Previous month reading : "+pre+"units");
+System.out.println("Current month reading : "+cur+"units");
+System.out.println("Current cunsumed this month : "+ele+"units");
+System.out.println("Amount needs to be paid this month : "+total+"Rs" );
+}
+}
+}
+
+2)To move all zeros to the end
+
+import java.util.*;
+class p2a {
+	public static void main(String []args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter a number: ");
+		String str=sc.next();
+		int n=str.length(),arr[]=new int[n];
+		for(int i=0;i<n;i++) {
+			arr[i]=(int)str.charAt(i)-48;
+		}
+		for(int i=0;i<n;i++) {
+			for(int j=0;j<n-1;j++) {
+				if(arr[j]==0) {
+					int temp=arr[j];
+					arr[j]=arr[j+1];
+					arr[j+1]=temp;
+				} else {
+					continue;
+				}
+			}
+		} System.out.println("The modified number is: ");
+		for(int i=0;i<arr.length;i++) {
+			System.out.print(arr[i]);
+		} System.out.println();
+	}
+}
+
+3) First non-repeating character in a string
+
+import java.util.*;
+class String1
+{
+public static void main(String args[])
+{
+Scanner in = new Scanner(System.in);
+String str;
+System.out.println("Enter the String");
+str=in.nextLine();
+int count=0,a=0;
+char c='0';
+for(int i=0;i<str.length();i++)
+{
+count = 0;
+c = str.charAt(i);
+for(int j=0;j<str.length();j++)
+if(c==str.charAt(j))
+count++;
+if(count == 1)
+{
+System.out.println("The 1st non-repeating element is "+c);
+a=1;
+break;
+}
+}
+if(a==0)
+System.out.println("There is no element in the string thats not repeated");
+}
+}
+
+4) Class employee, inheritance,constructors
+
+import java.util.*;
+class salary extends Employee
+{
+String[] designation;
+double[] monthly_salary;
+salary(int j)
+{
+Employee_name = new String[j];
+Employee_id = new String[j];
+designation = new String[j];
+monthly_salary = new double[j];
+}
+void display(int j)
+{
+System.out.println("details of employee who have salary above 2000");
+System.out.println("Employee id\tEmployee name\tEmployee Designation\t Monthly salary");
+for(int i=0;i<j;i++)
+if(monthly_salary[i] >= 2000)
+System.out.println(Employee_id[i]+"\t\t"+Employee_name[i]+"\t\t"+designation[i]+"\t\t\t"+monthly_salary[i]);
+}
+public static void main(String args[])
+{
+Scanner in = new Scanner(System.in);
+int length = args.length;
+salary obj = new salary(length);
+if(length==0)
+System.out.println("Please Enter Employee ID");
+for(int i=0;i<length;i++)
+{
+obj.Employee_id[i] = args[i];
+System.out.println("\t\t Order of details of "+obj.Employee_id[i]);
+System.out.println("name of employee");
+obj.Employee_name[i]=in.next();
+System.out.println("Designation of Employee");
+obj.designation[i]=in.next();
+System.out.println("Salary of the Employee");
+obj.monthly_salary[i]=in.nextDouble();
+}
+obj.display(length);
+}
+}
+class Employee
+{
+String[] Employee_id;
+String[] Employee_name;
+}
+
+5) Method Overloading
+
+class overloaddemo
+{
+void test()
+{
+System.out.println("No parameters");
+}
+void test(int a)
+{
+System.out.println("a: "+a);
+}
+double test (double a)
+{
+System.out.println("double a: "+a);
+return a*a;
+}
+void test (int a, int b)
+{
+System.out.println("a and b: "+a+" "+b);
+}
+}
+class Overload
+{
+public static void main(String args[])
+{
+overloaddemoob = new overloaddemo();
+double result;
+ob.test();
+ob.test(10);
+ob.test(10,20);
+result = ob.test(123.33);
+System.out.println("Result of ob.test(123.33): "+result);
+}}
+
+6)Garbage collection
+
+public class Main
+{
+public static void main(String[] args)
+{ 
+String string = new String("DSU");
+string = null; 
+System.gc();
+System.out.println("\tI am in Main method");
+}
+public void finalize()
+{
+System.out.println("\tI am Overriding finalize method");
+}
+}
+
+7)override polymorphism
+
+class Override
+{
+	public static void main(String args[])
+	{
+		B subOB = new B(1,2,3);
+		subOB.show("This is k: ");
+		subOB.show();
+	}
+}
+class A
+{
+	int i, j;
+	A(int a, int b)
+	{
+		i = a;
+		j = b;
+	}
+	void show()
+	{
+		System.out.println("i and j "+i+" "+j);
+	}
+}
+class B extends A
+{
+	int k;
+	B(int a, int b, int c)
+	{
+		super(a,b);
+		k = c;
+	}
+	void show(String msg)
+	{
+		System.out.println(msg + k);
+	}
+}
+
+8) Multiple Exception
+
+public class exc
+{
+public static void main(String args[])
+{
+try
+{
+int a[] = new int[5];
+a[5]=30/0;
+}
+catch (ArithmeticException e)
+{
+System.out.println("Arithemeticexection occurs");
+}
+catch(ArrayIndexOutOfBoundsException e)
+{
+System.out.println("ArrayIndex out of bound exception occurs");
+}
+catch(Exception e)
+{
+System.out.println("rest  of the code");
+}
+}
+}

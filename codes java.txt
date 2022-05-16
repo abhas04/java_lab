@@ -1,0 +1,269 @@
+1. Ebill
+
+import java.util.*;
+class Ebill {
+    public static void main(String[] args){
+        customerdata ob = new customerdata();
+        ob.getdata();
+        ob.calc();
+        ob.display();
+    }
+}
+class customerdata{
+    Scanner in = new Scanner(System.in);
+    Scanner ins = new Scanner(System.in);
+    String cname, type;
+    int bn;
+    double current, previous, dbill, units;
+    void getdata(){
+        System.out.println("enter number:");
+        bn = in.nextInt();
+        System.out.println("enter type of connection:");
+        type = ins.nextLine();
+        System.out.println("enter name:");
+        cname = ins.nextLine();
+        System.out.println("enter previous month reading:");
+        previous = in.nextInt();
+        System.out.println("enter current month reading:");
+        current = in.nextInt();
+    }
+void calc(){
+    units = current - previous;
+    if(type.equals("D")){
+        if (units <= 100)
+        dbill = 1*units;
+        else if (units >100 && units<=200)
+        dbill = 2.5*units;
+        else if (units>200 && units <=500)
+        dbill = 4*units;
+        else dbill = 6* units;
+    }
+    else{
+        if(units<=100)
+        dbill = 2*units;
+        else if (units >100 && units<=200)
+        dbill = 4.5*units;
+        else if (units>200 && units <=500)
+        dbill = 6*units;
+        else dbill = 7*units;
+    }
+}
+void display(){
+    System.out.println("customer number:" + bn);
+    System.out.println("customer name:" + cname);
+    if(type== "D")
+    System.out.println("connection type: domestic");
+    else System.out.println("connection type: commercial");
+    System.out.println("previous month reading: " + previous);
+    System.out.println("current month reading: " + current);
+    System.out.println("total units:" + units);
+    System.out.println("total bill:"+dbill);
+}
+}
+
+2. Move zeros
+
+import java.util.Scanner;
+public class Main 
+{
+    public static void main(String[] args) 
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the no. of elements in array:");
+        int n=sc.nextInt();
+        int ar[]=new int[n];
+        System.out.println("Enter the array elements:");
+        for(int i=0;i<n;i++) ar[i]=sc.nextInt();
+        for(int i=0;i<n;i++)
+        {
+            if(ar[i]==0)
+            {
+                for(int j=i+1;j<n;j++)
+                {
+                    if(ar[j]!=0)
+                    {
+                        ar[i]=ar[j];
+                        ar[j]=0;
+                        break;
+                    }
+                }
+            }
+        }
+        System.out.println("The final array is:");
+        for(int i=0;i<n;i++) System.out.print(ar[i]+" ");
+    }
+}
+
+3. Non repeating character
+ 	
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter the string:");
+        String scan = sc.nextLine();
+        for(char i:scan.toCharArray()){
+            if(scan.indexOf(i)==scan.lastIndexOf(i)){
+                System.out.println("first non repeating String is: " +i);
+                break;
+            }
+        }
+    }
+}
+
+4. Inheritance
+
+import java.util.*;
+class Main{
+    Scanner scan = new Scanner(System.in);
+    int emp_id;
+    String emp_name;
+    void getdata(){
+        System.out.println("enter name: ");
+        emp_name = scan.next();
+        System.out.println("enter id: ");
+        emp_id = scan.nextInt();
+    }
+}
+class salary extends Main{
+    Scanner scan = new Scanner(System.in);
+    double monthly_sal;
+    String des;
+    salary(double monthly_sal, String des, int emp_id, String emp_name){
+        this.emp_id = emp_id;
+        this.emp_name = emp_name;
+        this.des = des;
+        this.monthly_sal = monthly_sal;
+    }
+    void condition(){
+        System.out.println("monthly salary: " + monthly_sal);
+        if(monthly_sal>20000){
+            System.out.println("name: " + emp_name);
+            System.out.println("id: " + emp_id);
+            System.out.println("monthly salary: " + monthly_sal);
+            System.out.println("designation: " +des);
+        } else {
+            System.out.println("null");
+        }
+    }
+}
+class emp1{
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int id;
+        String name, desig;
+        double sal;
+        for (int i=0; i<3; i++){
+            System.out.println("enter id: ");
+            id = scan.nextInt();
+            System.out.println("enter name: ");
+            name = scan.next();
+            System.out.println("enter designation: ");
+            desig = scan.next();
+            System.out.println("enter salary: ");
+            sal = scan.nextDouble();
+            salary x = new salary(sal, desig, id, name);
+            x.condition();
+        }
+        
+    }
+}
+
+5. Overriding
+
+class Vehicle{
+  void run(){System.out.println("Vehicle is running");}  
+}
+class Bike2 extends Vehicle{
+  void run(){System.out.println("Bike has two wheels");}  
+  public static void main(String args[]){  
+  Bike2 obj = new Bike2();
+  obj.run();
+  }  
+}
+
+
+6. Garbage collection
+
+public class test
+{
+    public static void main(String[] args) throws InterruptedException
+    {
+        test t1= new test();
+        test t2 = new test();
+        t1=null;
+        System.gc();
+        t2=null;
+        Runtime.getRuntime().gc();
+    }
+    protected void finalize() throws Throwable
+    {
+        System.out.println("Garbage collector called");
+        System.out.println("Object garbage collected:" + this);
+    }
+}
+
+7 . Overloading
+
+class test{
+    void sum(int a, int b){
+        System.out.println(a+b);
+    }
+    void sum(int a, int b, int c){
+        System.out.println(a+b+c);
+    }
+    public static void main(String[] args){
+        test obj= new test();
+        obj.sum(20,20);
+        obj.sum(20,20,20);
+    }
+}
+
+8. Exception handling
+
+
+9. Swing GUI
+
+import javax.swing.*;
+class SwingDemo{SwingDemo(){
+JFrame jfrm = new JFrame ("simple application");
+jfrm.setSize(275,100);
+jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+JLabel jlab = new JLabel("powerful GUI");
+jfrm.add(jlab);
+jfrm.setVisible(true);
+}
+public static void main(String[] args){
+    Swing.Utilities.invokeLater(new Runnable(){
+        public void run(){
+            new SwingDemo();
+        }
+        });
+    }
+}
+
+10. Interface
+
+interface drawable{
+    void draw();
+}
+class rect implements drawable{
+    public void draw(){
+        System.out.println("drawing rectangle.");
+    }
+}
+class circle implements drawable{
+    public void draw(){
+        System.out.println("drawing a circle.");
+    }
+}
+class test1{
+    public static void main(String args[]){
+        drawable d = new circle();
+        d.draw();
+        drawable d2 = new rect();
+        d2.draw();
+    }
+}
+
+

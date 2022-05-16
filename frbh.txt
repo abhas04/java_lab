@@ -1,0 +1,575 @@
+1 } Electricity bills
+
+import java.util.*;
+public class Ebill
+{
+public static void main (String args[])
+{
+Customerdata ob = new Customerdata ();
+ob.getdata ();
+ob.calc();
+ob.display();
+}
+}
+
+class Customerdata
+{
+Scanner in = new Scanner (System.in);
+Scanner ins = new Scanner (System.in);
+String cname,type;
+intbn;
+doublecurrent,previous,tbill,units;
+voidgetdata()
+{
+System.out.print ("\n\t Enter consumer number ");
+bn = in.nextInt();
+System.out.print ("\n\t Enter Type of connection (D for Domestic or C for Commercial) ");
+type = ins.nextLine();
+System.out.print ("\n\t Enter consumer name ");
+cname = ins.nextLine();
+System.out.print ("\n\t Enter previous month reading ");
+previous= in.nextDouble();
+System.out.print ("\n\t Enter current month reading ");
+current= in.nextDouble();
+}
+ voidcalc()
+{
+units=current-previous;
+if(type.equals("D"))
+{
+if (units<=100)
+tbill=1 * units;
+else if (units>100 && units<=200)
+tbill=2.50*units;
+else if(units>200 && units<=500)
+tbill= 4*units;
+else
+tbill= 6*units;
+ 
+}
+else	
+{
+if (units<=100)
+tbill= 2 * units;
+else if(units>100 && units<=200)
+tbill=4.50*units;
+else if(units>200 && units<=500)
+tbill= 6*units;
+else
+tbill= 7*units;
+ 
+}
+}
+void display()
+{
+System.out.println("\n\t Consumer number = "+bn);
+System.out.println ("\n\t Consumer name = "+cname);
+if(type.equals("D"))
+System.out.println ("\n\t type of connection = DOMESTIC ");
+else
+System.out.println ("\n\t type of connection = COMMERCIAL ");
+System.out.println ("\n\t Current Month Reading = "+current);
+System.out.println ("\n\t Previous Month Reading = "+previous);
+System.out.println ("\n\t Total units = "+units);
+System.out.println ("\n\t Total bill = RS "+tbill);
+}
+}
+ ////////OUTPUT://////
+
+D:\ >javac Ebill.java
+D:\ >java Ebill
+Enter consumer number 1001
+Enter Type of connection (D for Domestic or C for Commercial) D
+Enter consumer name Sachin
+Enter previous month reading 3000
+Enter current month reading 4000
+Consumer number = 1001
+Consumer name = Sachin
+type of connection = DOMESTIC
+Current Month Reading = 4000.0
+Previous Month Reading = 3000.0
+Total units = 1000.0
+Total bill = RS 6000
+   ////////////////////////////////////////////////////
+2} move all 0's to the end
+
+public class main{
+    public static void main(String[] args) {
+        int num[] = {0, 0, 1, 2, 0, 3, 4, 0};
+        int output[] = new int[num.length];
+        int pointer = 0;
+        for (int i = 0; i < num.length; i++){
+            if (num[i] != 0){
+                output[pointer] = num[i];
+                pointer++;
+            }
+        }
+        for (int i = pointer; i < num.length; i++){
+            output[i] = 0;
+        }
+       
+        for (int i = 0; i < num.length; i++){
+            System.out.print(output[i] + " ");
+        }
+    }
+}
+  ---------------------------------------------------
+2} to move all 0's to the end 
+
+import java.util.*;
+ public class ArrayExample
+{
+public static void main(String[] args) 
+ {
+    		int[] array_nums = {0,0,1,0,3,0,5,0,6};
+     		int i = 0;
+       		System.out.print("\nOriginal array: \n");
+       		for (int n : array_nums)
+        		System.out.print(n+"  ");
+       		for(int j = 0, l = array_nums.length; j < l;)
+ {
+        		if(array_nums[j] == 0)
+            		j++;
+        		else
+{
+            		int temp = array_nums[i];
+            		array_nums[i] = array_nums[j];
+            		array_nums[j] = temp;
+            		i ++;
+            		j ++;
+        		}
+    	}
+    	while (i <array_nums.length)
+        	array_nums[i++] = 0;
+       	System.out.print("\nAfter moving 0's to the end of the array: \n");
+    	for (int n : array_nums)
+        	System.out.print(n+"  ");
+            	System.out.print("\n");
+    }
+}
+/////////OUTPUT://///////
+Original array: 
+0  0  1  0  3  0  5  0  6  
+After moving 0's to the end of the array: 
+1  3  5  6  0  0  0  0  0  
+
+3} the first non-repeating character in a string
+
+import java.util.*;
+classstringdemo
+{
+ public static void main(String[] args) 
+{
+ 	 	String str1 = "dayanand";
+ 	System.out.println("The given string is: " + str1);
+ 	 	for (int i = 0; i < str1.length(); i++)
+	{
+   				boolean unique = true;
+ 	 			for (int j = 0; j < str1.length(); j++)
+		{
+   			 		if (i != j && str1.charAt(i) == str1.charAt(j))
+ {
+    				 		unique = false;
+   				 		 break;
+  			 		 }
+  				 }
+ 				  if (unique) 
+{
+System.out.println ("The first non-repeated character in String is: " + str1.charAt (i));
+    				break;
+  			 }
+ 		 }
+ }
+}
+///////OUTPUT:
+The given string is: dayanand
+The first non-repeated character in String is: y
+
+ ////////////////////////////////////////////////
+4} emp _id and empname as members
+
+import java.util.Scanner;
+class Employee
+{
+String[] employee_id;
+String[] employee_name;
+}
+
+class Salary extends Employee
+{
+String[] Designation;
+double[] monthly_salary;
+
+Salary(int j)
+ {
+  /*initialization of array */
+
+employee_name=new String[j];
+employee_id=new String[j];
+  Designation=new String[j];
+monthly_salary= new double[j];
+
+ }
+
+void display(int j)
+ { 
+System.out.println("\t Details of employee who have salary above 20000");
+
+System.out.format("%-15s %-15s %-25s %-10s %n","employeeid","employeename","employeeDesignation","Monthly Salary");
+for(int i=0;i<j;i++)
+  { 
+
+if(monthly_salary[i]>=20000)
+   { 
+System.out.format("%-15s %-15s %-25s %-10s %n",employee_id[i],employee_name[i],Designation[i],monthly_salary[i]);
+
+   }
+  }
+ }
+
+public static void main(String [] args)
+ {
+  Scanner sc=new Scanner(System.in);
+int length=Integer.parseInt(args[0]);
+
+  Salary obj = new Salary(length);
+
+
+if(length==0)
+  {
+System.out.println("please enter employee id");
+System.exit(0);
+  }
+
+for(int i=0;i<length;i++)
+  {  
+
+
+System.out.println("\n\n enter the "+(i+1)+" employee id");
+obj.employee_id[i]=sc.next();
+System.out.print("\n name of employee -->");
+obj.employee_name[i]=sc.next();    
+
+System.out.print("\n Designation of employee -->");
+obj.Designation[i]=sc.next();    
+
+System.out.print("\nMonthly salary of employee -->");
+obj.monthly_salary[i]=sc.nextDouble();
+  }
+
+obj.display(length);
+ }
+}
+ //////////////////////////////////////////////////////////
+5} Method Overloading
+
+class adder
+{
+	void add(int a,int b)
+	{
+		System.out.println("Add method with 2 parameters");
+		System.out.println("Sum="+(a+b));
+	}
+	void add(int a,intb,int c)
+	{
+		System.out.println("Add method with 3 parameters");
+		System.out.println("Sum="+(a+b+c));
+	}
+	void add(float a,floatb,float c)
+	{
+		System.out.println("Add method with 3 float parameters");
+		System.out.println("Sum="+(a+b+c));
+	}
+	void add(int a,float b)
+	{
+		System.out.println("Add method with 2 parameters with first int and then float parameter");
+		System.out.println("Sum="+(a+b));
+	}
+	void add(float a,int b)
+	{
+		System.out.println("Add method with 2 parameters with first float and then int parameter");
+		System.out.println("Sum="+(a+b));
+	}
+	void add(double a)
+	{
+		System.out.println("Type prommotion");
+		System.out.println("Sum="+(a+a));
+	}
+}
+classmeovdemo
+{
+	public static void main(String args[])
+	{
+		adderobj=new adder();
+		obj.add(20,20);
+		obj.add(20,20,20);
+		obj.add(30.0f,20.0f,40.f);
+		obj.add(50,25.0f);
+		obj.add(50.0f,30);
+		obj.add(75.0f);
+	}
+}
+
+   ////////////////////////////////////////////////////////////
+ 6} run time polymorphism
+
+classAnimal {
+publicvoiddisplayInfo() {
+System.out.println("I am an animal.");
+   }
+}
+
+classDogextendsAnimal {
+@Override
+publicvoiddisplayInfo() {
+System.out.println("I am a dog.");
+   }
+}
+
+classMain {
+publicstaticvoidmain(String[] args) {
+      Dog d1 = newDog();
+d1.displayInfo();
+   }
+}
+
+///////Output://
+  I am a dog
+
+            /////////////////////////////////////////////////////////
+
+7} Overloading
+
+class test{
+    void sum(int a, int b){
+        System.out.println(a+b);
+    }
+    void sum(int a, int b, int c){
+        System.out.println(a+b+c);
+    }
+    public static void main(String[] args){
+        test obj= new test();
+        obj.sum(20,20);
+        obj.sum(20,20,20);
+    }
+}
+    ///////////////////////////////////////////////
+8} Exception handling
+
+public class d{
+public static void main(String args[]){
+try {
+int a[] = new int[5];
+a[5]=30/0;
+}
+catch (ArithmeticException e)
+{
+System.out.println("ArthmeticException occurs");
+}
+catch (ArrayIndexOutOfBoundsException e)
+{
+System.out.println("Array Index out of bonds Exception occurs");
+}
+catch(Exception e)
+{
+System.out.println("parent exception occurs");
+}
+}
+}
+
+
+
+/////////////////////////////////////////////////////////////
+9} SWing GUI
+
+import javax.swing.*;    
+public class swing {    
+    JFrame f;    
+    swing(){    
+    f=new JFrame();    
+    String data[][]={ {"pavan","ENG20CT0026","CST"},    
+                          {"vikas","ENG20CT0005","CST"},    
+                          {"rohan","ENG20CY0015","CY"}};    
+    String column[]={"NAME","ROLLNO","DEPARTMENT"};         
+    JTable jt=new JTable(data,column);    
+    jt.setBounds(30,40,200,300);  
+    f.add(jt);          
+    f.setSize(300,400);    
+    f.setVisible(true);    
+}     
+public static void main(String[] args) {    
+    new swing();    
+}    
+}
+              [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
+
+10} interface
+
+interface Drawable {  
+void draw();  
+}  
+
+class Rectangle implements Drawable
+{  
+public void draw()
+{
+System.out.println("drawing rectangle");
+}  
+}  
+class Circle implements Drawable 
+{  
+public void draw()
+{
+System.out.println("drawing circle");
+}  
+}   
+class TestInterface1
+{  
+public static void main(String args[])
+{  
+Drawable d=new Circle();  
+d.draw();  
+}}  
+
+
+
+           /////////////////////////////////////////////
+
+
+12} A}
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Division extends JFrame implements ActionListener
+{
+Container c;
+JButton btn;
+JLabel lbl1,lbl2,lbl3;
+JTextField tf1,tf2,tf3;
+JPanel p;
+
+Division()
+{
+super("INTEGER DIVISION");
+c=getContentPane();
+c.setBackground(Color.red);
+btn=new JButton("DIVIDE");
+btn.addActionListener(this);
+tf1=new JTextField(10);
+tf2=new JTextField(10);
+tf3=new JTextField(10);
+lbl1=new JLabel("NUM 1");
+lbl2=new JLabel("NUM 2");
+lbl3=new JLabel("RESULT");
+p=new JPanel();
+p.setLayout(new GridLayout(3,2));
+p.add(lbl1);
+p.add(tf1);
+p.add(lbl2); p.add(tf2);
+p.add(lbl3); p.add(tf3);
+c.add(new JLabel("Division"),"North");
+c.add(p,"Center");
+c.add(btn,"South");
+}
+
+public void actionPerformed(ActionEvent e)
+{
+if(e.getSource()==btn)
+{
+try
+{
+int a=Integer.parseInt(tf1.getText());
+int b=Integer.parseInt(tf2.getText());
+int c=a/b;
+tf3.setText(""+c);
+}
+catch(NumberFormatException ex)
+{
+tf3.setText("–");
+JOptionPane.showMessageDialog(this,"NumberFormatException");
+}
+catch(ArithmeticException ex)
+{
+tf3.setText("–");
+JOptionPane.showMessageDialog(this,"Division by zero");
+}
+catch(Exception ex)
+{
+tf3.setText("–");
+JOptionPane.showMessageDialog(this,"Other Err "+ex.getMessage());
+}
+}
+}
+
+//actionPerformed
+
+public static void main(String args[])
+{
+Division b=new Division();
+b.setSize(90,100);
+b.setVisible(true);
+}
+}
+
+              /////////////////////////////////////
+12} B}
+
+12(b)import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+    
+class BuildGUI extends JFrame implements ActionListener {
+        JFrame actualWindow;
+        JPanel container;
+        JTextField txt_num1, txt_num2, txt_result;
+        JButton btn_div;
+        
+        BuildGUI() {
+            actualWindow = new JFrame("Experiment 4");
+            container = new JPanel();
+            container.setLayout(new FlowLayout());
+            
+            txt_num1 = new JTextField(20);
+            txt_num2 = new JTextField(20);
+            txt_result = new JTextField(20);
+    
+            btn_div = new JButton("Divide");
+            btn_div.addActionListener(this);
+            
+            container.add(txt_num1);
+            container.add(txt_num2);
+            container.add(btn_div);
+            container.add(txt_result);
+            
+            actualWindow.add(container);
+            actualWindow.setSize(300, 300);
+            actualWindow.setVisible(true);
+        }
+    
+       
+        public void actionPerformed(ActionEvent e) {
+            int num1, num2;
+            try {
+                num1 = Integer.parseInt(txt_num1.getText());
+                num2 = Integer.parseInt(txt_num2.getText());
+                txt_result.setText(num1/num2+"");
+            }
+            catch(NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(actualWindow,"Please do enter only integers");  
+            }
+            catch(ArithmeticException ae) {
+                JOptionPane.showMessageDialog(actualWindow,"Divisor can not be ZERO");  
+            }
+        }
+}
+ class Experiment4 {
+    
+    public static void main(String[] args) {
+        new BuildGUI();
+    
+    }
+    
+}
+
+

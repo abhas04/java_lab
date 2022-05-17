@@ -1,0 +1,392 @@
+****************
+interface
+****************
+//Interface declaration: by first user  
+interface Drawable{  
+void draw();  
+}  
+//Implementation: by second user  
+class Rectangle implements Drawable{  
+public void draw(){System.out.println("drawing rectangle");}  
+}  
+class Circle implements Drawable{  
+public void draw(){System.out.println("drawing circle");}  
+}  
+//Using interface: by third user  
+class TestInterface1{  
+public static void main(String args[]){  
+Drawable d=new Circle();
+d.draw();  
+}}  
+
+
+*************************
+garbagecollection
+**********************
+public class TestGarbage1{  
+ public void finalize(){System.out.println("object is garbage collected");}  
+ public static void main(String args[]){  
+  TestGarbage1 s1=new TestGarbage1();  
+  TestGarbage1 s2=new TestGarbage1();  
+  s1=null;  
+  s2=null;  
+  System.gc();  
+ }  
+}  
+
+*****************************
+method overriding
+*************************
+class Bank{  
+int getRateOfInterest(){return 0;}  
+}  
+//Creating child classes.  
+class SBI extends Bank{  
+int getRateOfInterest(){return 8;}  
+}  
+  
+class ICICI extends Bank{  
+int getRateOfInterest(){return 7;}  
+}  
+class AXIS extends Bank{  
+int getRateOfInterest(){return 9;}  
+}  
+//Test class to create objects and call the methods  
+class Test2{  
+public static void main(String args[]){  
+SBI s=new SBI();  
+ICICI i=new ICICI();  
+AXIS a=new AXIS();  
+System.out.println("SBI Rate of Interest: "+s.getRateOfInterest());  
+System.out.println("ICICI Rate of Interest: "+i.getRateOfInterest());  
+System.out.println("AXIS Rate of Interest: "+a.getRateOfInterest());  
+}  
+}  
+
+************************
+overloading
+********************
+public class Sum {
+	public int sum(int x, int y)
+	{
+		return (x + y);
+	}
+	public int sum(int x, int y, int z)
+	{
+		return (x + y + z);
+	}
+	public double sum(double x, double y)
+	{
+		return (x + y);
+	}
+	public static void main(String args[])
+	{
+		Sum s = new Sum();
+		System.out.println(s.sum(10, 20));
+		System.out.println(s.sum(10, 20, 30));
+		System.out.println(s.sum(10.5, 20.5));
+	}
+}
+
+
+***********************
+0's at the end
+**************************
+public class Main{
+    public static void main(String[] args) {
+        int num[] = {0, 0, 1, 2, 0, 3, 4, 0};
+        int output[] = new int[num.length];
+        int pointer = 0;
+        for (int i = 0; i < num.length; i++){
+            if (num[i] != 0){
+                output[pointer] = num[i];
+                pointer++;
+            }
+        }
+        for (int i = pointer; i < num.length; i++){
+            output[i] = 0;
+        }
+       
+        for (int i = 0; i < num.length; i++){
+            System.out.print(output[i] + " ");
+        }
+    }
+}
+
+
+**************************
+first non repeating char
+**************************
+public class Main{
+    public static void main (String[]args){
+        String str1 = "aabbcddee";
+        System.out.println ("The given string is: " + str1);
+        for (int i = 0; i < str1.length (); i++){
+    	    boolean unique = true;
+    	    for (int j = 0; j < str1.length (); j++){
+    	        if (i != j && str1.charAt (i) == str1.charAt (j)){
+    		        unique = false;
+    	            break;
+    	        }
+    	    }
+    	    if (unique){
+    	        System.out.println ("The first non repeated character in String is: " + str1.charAt (i));
+    	        break;
+    	    }
+        }
+    }
+}
+********************
+multiple exceptions
+********************
+public class MEE{    
+    public static void main(String args[]){    
+        try{    
+            int array[] = new int[10];    
+            array[10] = 30/0;    
+        }    
+        catch(ArithmeticException e){  
+            System.out.println(e.getMessage());  
+        }    
+        catch(ArrayIndexOutOfBoundsException e){  
+            System.out.println(e.getMessage());  
+        }    
+        catch(Exception e){  
+            System.out.println(e.getMessage());  
+        }    
+     }    
+}  
+****************************
+swing
+***********************
+import javax.swing.*;    
+public class swing {    
+    JFrame f;    
+    swing(){    
+    f=new JFrame();    
+    String data[][]={ {"Vinay","ENG20CT0031","CST"},    
+                          {"Mohith B","ENG20CT0014","CST"},    
+                          {"Pavan","ENG20CY0025","CY"}};    
+    String column[]={"NAME","ROLLNO","DEPARTMENT"};         
+    JTable jt=new JTable(data,column);    
+    jt.setBounds(30,40,200,300);  
+    f.add(jt);          
+    f.setSize(300,400);    
+    f.setVisible(true);    
+}     
+public static void main(String[] args) {    
+    new swing();    
+}    
+}
+
+************************************************************
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Division extends JFrame implements ActionListener
+{
+Container c;
+JButton btn;
+JLabel lbl1,lbl2,lbl3;
+JTextField tf1,tf2,tf3;
+JPanel p;
+
+Division()
+{
+super("INTEGER DIVISION");
+c=getContentPane();
+c.setBackground(Color.red);
+btn=new JButton("DIVIDE");
+btn.addActionListener(this);
+tf1=new JTextField(10);
+tf2=new JTextField(10);
+tf3=new JTextField(10);
+lbl1=new JLabel("NUM 1");
+lbl2=new JLabel("NUM 2");
+lbl3=new JLabel("RESULT");
+p=new JPanel();
+p.setLayout(new GridLayout(3,2));
+p.add(lbl1);
+p.add(tf1);
+p.add(lbl2); p.add(tf2);
+p.add(lbl3); p.add(tf3);
+c.add(new JLabel("Division"),"North");
+c.add(p,"Center");
+c.add(btn,"South");
+}
+
+public void actionPerformed(ActionEvent e)
+{
+if(e.getSource()==btn)
+{
+try
+{
+int a=Integer.parseInt(tf1.getText());
+int b=Integer.parseInt(tf2.getText());
+int c=a/b;
+tf3.setText(""+c);
+}
+catch(NumberFormatException ex)
+{
+tf3.setText("–");
+JOptionPane.showMessageDialog(this,"NumberFormatException");
+}
+catch(ArithmeticException ex)
+{
+tf3.setText("–");
+JOptionPane.showMessageDialog(this,"Division by zero");
+}
+catch(Exception ex)
+{
+tf3.setText("–");
+JOptionPane.showMessageDialog(this,"Other Err "+ex.getMessage());
+}
+}
+}
+
+//actionPerformed
+
+public static void main(String args[])
+{
+Division b=new Division();
+b.setSize(90,100);
+b.setVisible(true);
+}
+}
+*************************************************************************************
+electricity bill
+********************************************8
+import java.util.*;
+class ebill
+{
+public static void main (String args[])
+{
+customerdata ob = new customerdata();
+ob.getdata();
+ob.calc();
+ob.display();
+}
+}
+class customerdata
+{
+Scanner in = new Scanner(System.in);
+Scanner ins = new Scanner(System.in);
+String cname,type;
+int bn;
+double current,previous,tbill,units;
+void getdata()
+{
+System.out.print ("\n\t Enter consumer number  ");
+bn = in.nextInt();
+System.out.print ("\n\t Enter Type of connection  (D for Domestic or C for Commercial) ");
+type = ins.nextLine();
+System.out.print ("\n\t Enter consumer name  ");
+cname = ins.nextLine();
+System.out.print ("\n\t Enter previous month reading  ");
+previous= in.nextDouble();
+System.out.print ("\n\t Enter current month reading  ");
+current= in.nextDouble();
+}
+void calc()
+{
+units=current-previous;
+if(type.equals("D"))
+{
+if (units<=100)
+tbill=1 * units;
+else if (units>100 && units<=200)
+tbill=2.50*units;
+else if(units>200 && units<=500)
+tbill= 4*units;
+else
+tbill= 6*units;
+}
+else 
+{
+if (units<=100)
+tbill= 2 * units;
+else if(units>100 && units<=200)
+tbill=4.50*units;
+else if(units>200 && units<=500)
+tbill= 6*units;
+else
+tbill= 7*units;
+}
+}
+void display()
+{
+System.out.println("\n\t Consumer number = "+bn);
+System.out.println ("\n\t Consumer name = "+cname);
+if(type.equals("D"))
+System.out.println ("\n\t type of connection  = DOMESTIC ");
+else
+System.out.println ("\n\t type of connection  = COMMERCIAL ");
+System.out.println ("\n\t Current Month  Reading = "+current);
+System.out.println ("\n\t Previous Month  Reading = "+previous);
+System.out.println ("\n\t Total units = "+units);
+System.out.println ("\n\t Total bill = RS "+tbill);
+}
+}
+*******************************
+inheritance employeee
+***************************
+import java.util.Scanner;
+class employee
+{
+ int emp_id;
+ String emp_name;
+ employee(int id,String name)
+ {
+  emp_id=id;
+  emp_name=name;
+ }
+}
+class Salary extends employee
+{
+ String designation;
+ double emp_salary;
+ Salary(int id,String name,String deg,double sal)
+ {
+  super(id,name);
+  designation=deg;
+  emp_salary=sal;
+ }
+ void display()
+ {
+  System.out.println("Employee Id: "+this.emp_id);
+  System.out.println("Employee Name: "+this.emp_name);
+  System.out.println("Employee Designation: "+this.designation);
+  System.out.println("Employee Salary: "+this.emp_salary);
+ }
+ public static void main(String a[])
+ {
+  int n,i,id;
+  String name,deg;
+  double sal;
+  Scanner sc=new Scanner(System.in);
+  n=Integer.parseInt(a[0]);
+  Salary s[]=new Salary[n];
+  System.out.println("Enter "+n+" employee entry");
+  for(i=0;i<n;i++)
+  {
+   System.out.print("\nEnter employee name: " );
+   name=sc.next();
+   System.out.print("\nEnter employee Designation: ");
+   deg=sc.next();
+   System.out.print("\nEnter employee Salary: ");
+   sal=sc.nextDouble();
+   System.out.print("\nEnter employee id: ");
+   id=sc.nextInt();
+   s[i]=new Salary(id,name,deg,sal);
+   System.out.println("");
+  }
+  for(i=0;i<n;i++)
+  {
+   if(s[i].emp_salary>20000)
+   {
+    s[i].display();
+   }
+  }
+ }
+}
